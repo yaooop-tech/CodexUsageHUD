@@ -15,6 +15,12 @@ struct CodexUsageHUDApp: App {
         AppPreferencesMigration.apply()
 #if DEBUG
         if let scenario = DemoPresentation.scenarioFromEnvironment {
+            UserDefaults.standard.removeObject(forKey: DefaultsKey.windowX)
+            UserDefaults.standard.removeObject(forKey: DefaultsKey.windowY)
+            UserDefaults.standard.set(HUDSnapEdge.right.rawValue, forKey: DefaultsKey.snapEdge)
+            if let visibleFrame = NSScreen.main?.visibleFrame {
+                UserDefaults.standard.set(visibleFrame.midY, forKey: DefaultsKey.railMidY)
+            }
             UserDefaults.standard.set(
                 scenario == .idle || scenario == .weeklyOnlyCollapsed || scenario == .running || scenario == .runningWithCompletion || scenario == .needsConfirmation || scenario == .singleTaskCompleted,
                 forKey: DefaultsKey.collapsed)

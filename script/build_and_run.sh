@@ -60,9 +60,9 @@ build_bundle() {
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>CFBundleShortVersionString</key>
-  <string>1.8.2</string>
+  <string>1.8.3</string>
   <key>CFBundleVersion</key>
-  <string>10</string>
+  <string>11</string>
   <key>LSMinimumSystemVersion</key>
   <string>$MIN_SYSTEM_VERSION</string>
   <key>LSUIElement</key>
@@ -128,7 +128,7 @@ case "$MODE" in
     fi
     mkdir -p "$PACKAGE_DIR"
     PACKAGE_DIR="$(cd "$PACKAGE_DIR" && pwd)"
-    ARCHIVE="$PACKAGE_DIR/CodexUsageHUD-v1.8.2-macos-arm64.zip"
+    ARCHIVE="$PACKAGE_DIR/CodexUsageHUD-v1.8.3-macos-arm64.zip"
     rm -f "$ARCHIVE"
     /usr/bin/xattr -cr "$APP_BUNDLE" 2>/dev/null || true
     (

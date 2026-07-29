@@ -129,6 +129,30 @@ struct OAuthUsageParsingTests {
         #expect(snapshot.secondaryWindow?.remainingPercent == 96)
     }
 
+    @Test func keepsBothWindowsWhenWeeklyIsPrimaryAndShortWindowIsUnlabelled() {
+        let snapshot = makeSnapshot(
+            primary: RateLimitWindow(usedPercent: 40, windowDurationMins: 10_080, resetsAt: nil),
+            secondary: RateLimitWindow(usedPercent: 20, windowDurationMins: nil, resetsAt: nil)
+        )
+
+        #expect(snapshot.displayWindows.map(\.kind) == [.fiveHour, .weekly])
+        #expect(snapshot.collapsedDisplayWindows.count == 2)
+        #expect(snapshot.primaryWindow?.remainingPercent == 80)
+        #expect(snapshot.secondaryWindow?.remainingPercent == 60)
+    }
+
+    @Test func keepsBothWindowsWhenFiveHourIsKnownAndWeeklyIsUnlabelled() {
+        let snapshot = makeSnapshot(
+            primary: RateLimitWindow(usedPercent: 40, windowDurationMins: nil, resetsAt: nil),
+            secondary: RateLimitWindow(usedPercent: 20, windowDurationMins: 300, resetsAt: nil)
+        )
+
+        #expect(snapshot.displayWindows.map(\.kind) == [.fiveHour, .weekly])
+        #expect(snapshot.collapsedDisplayWindows.count == 2)
+        #expect(snapshot.primaryWindow?.remainingPercent == 80)
+        #expect(snapshot.secondaryWindow?.remainingPercent == 60)
+    }
+
     @Test func returnsToDefaultModeWhenFiveHourWindowReappears() {
         let snapshot = makeSnapshot(
             primary: RateLimitWindow(usedPercent: 20, windowDurationMins: 300, resetsAt: nil),

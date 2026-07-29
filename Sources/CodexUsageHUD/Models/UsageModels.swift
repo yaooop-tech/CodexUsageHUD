@@ -190,13 +190,7 @@ struct UsageSnapshot {
         let positionalPrimary = UsageWindow(source: rateLimit?.primary)
         guard provider == .codex else { return positionalPrimary }
 
-        let windows = [positionalPrimary, UsageWindow(source: rateLimit?.secondary)].compactMap { $0 }
-        if let fiveHour = windows.first(where: \.isFiveHourWindow) {
-            return fiveHour
-        }
-        // If a duration-labelled weekly window is the only Codex window, the
-        // API has promoted it to `primary_window`; do not present it as 5-hour.
-        return windows.contains(where: \.isWeeklyWindow) ? nil : positionalPrimary
+        return displayWindows.first(where: { $0.kind == .fiveHour })?.window
     }
 
     var secondaryWindow: UsageWindow? {
@@ -207,8 +201,7 @@ struct UsageSnapshot {
         let positionalSecondary = UsageWindow(source: rateLimit?.secondary)
         guard provider == .codex else { return positionalSecondary }
 
-        let windows = [UsageWindow(source: rateLimit?.primary), positionalSecondary].compactMap { $0 }
-        return windows.first(where: \.isWeeklyWindow) ?? positionalSecondary
+        return displayWindows.first(where: { $0.kind == .weekly })?.window
     }
 
     /// All available windows in their expanded-HUD order. Codex windows are
@@ -226,6 +219,13 @@ struct UsageSnapshot {
             ].compactMap { $0 }
         }
 
+        let knownKinds = positional.compactMap { window -> UsageWindowKind? in
+            guard let window else { return nil }
+            if window.isFiveHourWindow { return .fiveHour }
+            if window.isWeeklyWindow { return .weekly }
+            return nil
+        }
+
         var result: [UsageDisplayWindow] = []
         for (index, window) in positional.enumerated() {
             guard let window else { continue }
@@ -233,6 +233,14 @@ struct UsageSnapshot {
             if window.isFiveHourWindow {
                 kind = .fiveHour
             } else if window.isWeeklyWindow {
+                kind = .weekly
+            } else if knownKinds.contains(.weekly) {
+                // If the weekly window was promoted into the primary slot,
+                // the remaining unlabelled window is the short usage window.
+                kind = .fiveHour
+            } else if knownKinds.contains(.fiveHour) {
+                // Likewise, keep the second unlabelled window visible as the
+                // weekly window instead of silently de-duplicating it.
                 kind = .weekly
             } else {
                 kind = index == 0 ? .fiveHour : .weekly

@@ -12,6 +12,7 @@ final class AgentActivityMonitor {
     private var debounceTask: Task<Void, Never>?
     private var fallbackTask: Task<Void, Never>?
     private var reloadTask: Task<Void, Never>?
+    private var reloadRequestedWhileBusy = false
     private(set) var isRunning = false
 
     init(startedAt: Date) {
@@ -43,6 +44,7 @@ final class AgentActivityMonitor {
         fallbackTask = nil
         reloadTask?.cancel()
         reloadTask = nil
+        reloadRequestedWhileBusy = false
         removeSources()
     }
 
@@ -62,7 +64,12 @@ final class AgentActivityMonitor {
     }
 
     private func reload() {
-        guard isRunning, reloadTask == nil else { return }
+        guard isRunning else { return }
+        guard reloadTask == nil else {
+            reloadRequestedWhileBusy = true
+            return
+        }
+        reloadRequestedWhileBusy = false
         let startedAt = startedAt
         reloadTask = Task { [weak self] in
             let readings = await Task.detached(priority: .utility) {
@@ -72,6 +79,9 @@ final class AgentActivityMonitor {
             self.handler?(readings)
             self.configureSources()
             self.reloadTask = nil
+            if self.reloadRequestedWhileBusy {
+                self.scheduleReload(delay: .zero)
+            }
         }
     }
 

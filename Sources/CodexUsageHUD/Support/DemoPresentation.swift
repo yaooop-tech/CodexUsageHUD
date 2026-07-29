@@ -21,7 +21,7 @@ struct DemoPresentation {
     }
 
     let scenario: Scenario
-    private let now = Date(timeIntervalSince1970: 1_784_214_400)
+    private let now = Date(timeIntervalSince1970: 1_785_369_600)
 
     init(scenario: Scenario) {
         self.scenario = scenario

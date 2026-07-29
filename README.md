@@ -10,7 +10,7 @@ This is an independent project by [yaooop-tech](https://github.com/yaooop-tech).
 
 ## Public preview
 
-The first downloadable build is a public preview for **macOS 14 or later on Apple Silicon**. It is deliberately unsigned and not notarized yet. macOS may show a security warning on first launch; after confirming that you downloaded it from this release, right-click the app, choose **Open**, then confirm in **System Settings → Privacy & Security** if macOS asks again.
+The downloadable build is a public preview for **macOS 14 or later on Apple Silicon**. It is ad-hoc signed for bundle integrity, but it is not Developer ID signed or Apple notarized. macOS may show a security warning on first launch; after confirming that you downloaded it from this release, right-click the app, choose **Open**, then confirm in **System Settings → Privacy & Security** if macOS asks again.
 
 The preview ZIP contains only the app and its required helper. It contains no author account, local history, credentials, logs, screenshots, or machine configuration.
 
@@ -20,6 +20,7 @@ The preview ZIP contains only the app and its required helper. It contains no au
 - Displays Codex in both **5-hour + weekly** mode and **weekly-only** mode when the short window is unavailable.
 - Follows the frontmost supported app automatically, or stays locked to Codex, Claude, or Kimi when you prefer a fixed source.
 - Aggregates activity from supported tools: running/thinking, completed-but-unread, needs-input, and error. A completion reminder is retained even while another task keeps running.
+- Refreshes activity again when several task events arrive during the same scan, so a final start or completion event is not left waiting for the fallback poll.
 - Keeps the collapsed rail visually attached to the selected screen edge. Expanding, collapsing, or resizing preserves the attached edge instead of letting the HUD drift across the desktop.
 - Offers a detailed expanded view with usage cards, reset information and token history where available. Settings cover automatic or fixed sources, English/Chinese, system/light/dark appearance, refresh interval, and launch-at-login.
 
@@ -57,7 +58,7 @@ All images below use fixed demonstration data. They contain no real account, tas
 
 ## Install
 
-1. Download `CodexUsageHUD-v1.8.2-macos-arm64.zip` from the release page.
+1. Download `CodexUsageHUD-v1.8.3-macos-arm64.zip` from the release page.
 2. Unzip it and move **Codex Usage HUD.app** to Applications if you want.
 3. Right-click the app and choose **Open**. If Gatekeeper blocks it, open **System Settings → Privacy & Security** and choose **Open Anyway**.
 4. Start the apps you use, then open the HUD. In Settings, leave source selection on **Automatic** or choose a fixed provider.
@@ -104,7 +105,7 @@ Codex Usage HUD 是一个原生 macOS 悬浮 HUD。它把 AI 编程工具的额�
 
 ## 公开体验版说明
 
-首个可下载版本是公开体验版，仅支持 **macOS 14 或更高版本的 Apple Silicon Mac**。它目前没有 Developer ID 签名和 Apple 公证，因此第一次启动时 macOS 可能会出现安全提示。请确认 App 来自本 Release 后，右键点按 App 选择“打开”；如仍被拦截，可前往“系统设置 → 隐私与安全性”选择“仍要打开”。
+可下载版本是公开体验版，仅支持 **macOS 14 或更高版本的 Apple Silicon Mac**。它仅使用临时签名保证 App 包完整性，没有 Developer ID 签名和 Apple 公证，因此第一次启动时 macOS 可能会出现安全提示。请确认 App 来自本 Release 后，右键点按 App 选择“打开”；如仍被拦截，可前往“系统设置 → 隐私与安全性”选择“仍要打开”。
 
 ZIP 内只包含 App 和必需的辅助程序，不包含作者账号、本机历史、凭据、日志、截图或机器配置。
 
@@ -114,6 +115,7 @@ ZIP 内只包含 App 和必需的辅助程序，不包含作者账号、本机�
 - Codex 同时支持“5 小时 + 周限额”，也支持短窗口缺失时自动切换为“仅周限额”。
 - 自动跟随当前前台的受支持应用；也可以在设置中固定为 Codex、Claude 或 Kimi。
 - 聚合运行/思考中、完成未读、需要输入和错误等活动状态。即使另一项任务仍在运行，完成提醒也不会被覆盖。
+- 同一轮扫描期间连续收到多个任务事件时会自动补充刷新，避免最后一条开始或完成事件滞留到兜底轮询。
 - 收起态会吸附在你选定的屏幕边缘。展开、收起或调整大小时，HUD 会保持贴边，不会无故漂移。
 - 展开后可查看用量卡片、重置时间和可用时的 Token 历史。设置中可选自动或固定来源、中文/英文、跟随系统/浅色/深色界面、刷新频率和登录时启动。
 
@@ -151,7 +153,7 @@ ZIP 内只包含 App 和必需的辅助程序，不包含作者账号、本机�
 
 ## 安装
 
-1. 在 Release 页面下载 `CodexUsageHUD-v1.8.2-macos-arm64.zip`。
+1. 在 Release 页面下载 `CodexUsageHUD-v1.8.3-macos-arm64.zip`。
 2. 解压后，把 **Codex Usage HUD.app** 移到“应用程序”文件夹（可选）。
 3. 右键点按 App 并选择“打开”。如果 Gatekeeper 拦截，请到“系统设置 → 隐私与安全性”选择“仍要打开”。
 4. 启动你使用的工具后打开 HUD；在设置中保持“自动”，或选择固定来源。

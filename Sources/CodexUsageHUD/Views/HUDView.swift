@@ -71,7 +71,7 @@ struct HUDView: View {
         guard collapsedMode.isActive, collapsedRowCount > 1 else {
             return EdgeInsets(top: 7, leading: 0, bottom: 7, trailing: 0)
         }
-        return EdgeInsets(top: 16, leading: 0, bottom: 28, trailing: 0)
+        return EdgeInsets(top: 22, leading: 0, bottom: 22, trailing: 0)
     }
 
     private var activeQuotaItems: [ActiveQuotaItem] {
@@ -376,7 +376,7 @@ struct HUDView: View {
                     Text(lastError)
                         .font(.caption)
                         .foregroundStyle(.red)
-                        .lineLimit(3)
+                        .lineLimit(1)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
@@ -459,7 +459,7 @@ struct HUDView: View {
                 codexTokenSection
             }
 
-            if viewModel.snapshot?.isSourceStale == true {
+            if viewModel.snapshot?.isSourceStale == true, viewModel.lastError == nil {
                 Text(L10n.text(.staleClaudeData, language: appLanguage))
                     .font(.caption2)
                     .foregroundStyle(.orange)
@@ -720,13 +720,13 @@ struct HUDView: View {
         hoverCollapseTask?.cancel()
         hoverCollapseTask = nil
 
-        guard !isInside, !isCollapsed else {
+        guard !isInside, !isCollapsed, !viewModel.activitySummary.hasActivity else {
             return
         }
 
         hoverCollapseTask = Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(900))
-            guard !Task.isCancelled, !isCollapsed else {
+            guard !Task.isCancelled, !isCollapsed, !viewModel.activitySummary.hasActivity else {
                 return
             }
             isCollapsed = true
