@@ -1,0 +1,14 @@
+name: Bug report
+description: Report a reproducible problem without private account data.
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: Do not include tokens, cookies, email addresses, prompts, or logs containing them.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: App and macOS version
+    validations:
+      required: true
