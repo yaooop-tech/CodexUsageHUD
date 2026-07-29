@@ -9,7 +9,8 @@ struct DemoPresentation {
         case dualWindows
         case weeklyOnly
         case running
-        case attention
+        case needsConfirmation
+        case singleTaskCompleted
         case settings
     }
 
@@ -72,14 +73,20 @@ struct DemoPresentation {
         switch scenario {
         case .running:
             values = [
-                .codex: ProviderActivitySummary(provider: .codex, thinkingCount: 2, attentionCount: 0, errorCount: 0, unreadCompletionCount: 1),
+                .codex: ProviderActivitySummary(provider: .codex, thinkingCount: 2, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0),
                 .claude: ProviderActivitySummary(provider: .claude, thinkingCount: 1, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0),
                 .kimi: ProviderActivitySummary(provider: .kimi, thinkingCount: 0, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0)
             ]
-        case .attention:
+        case .needsConfirmation:
             values = [
-                .codex: ProviderActivitySummary(provider: .codex, thinkingCount: 0, attentionCount: 1, errorCount: 0, unreadCompletionCount: 2),
-                .claude: ProviderActivitySummary(provider: .claude, thinkingCount: 0, attentionCount: 0, errorCount: 1, unreadCompletionCount: 0),
+                .codex: ProviderActivitySummary(provider: .codex, thinkingCount: 0, attentionCount: 1, errorCount: 0, unreadCompletionCount: 0),
+                .claude: ProviderActivitySummary(provider: .claude, thinkingCount: 0, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0),
+                .kimi: ProviderActivitySummary(provider: .kimi, thinkingCount: 0, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0)
+            ]
+        case .singleTaskCompleted:
+            values = [
+                .codex: ProviderActivitySummary(provider: .codex, thinkingCount: 0, attentionCount: 0, errorCount: 0, unreadCompletionCount: 1),
+                .claude: ProviderActivitySummary(provider: .claude, thinkingCount: 0, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0),
                 .kimi: ProviderActivitySummary(provider: .kimi, thinkingCount: 0, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0)
             ]
         default:

@@ -21,7 +21,7 @@ The preview ZIP contains only the app and its required helper. It contains no au
 - Follows the frontmost supported app automatically, or stays locked to Codex, Claude, or Kimi when you prefer a fixed source.
 - Aggregates activity from supported tools: running/thinking, completed-but-unread, needs-input, and error. A completion reminder is retained even while another task keeps running.
 - Keeps the collapsed rail visually attached to the selected screen edge. Expanding, collapsing, or resizing preserves the attached edge instead of letting the HUD drift across the desktop.
-- Offers a detailed expanded view with usage cards, reset information, token history where available, appearance controls, and launch-at-login preferences.
+- Offers a detailed expanded view with usage cards, reset information and token history where available. Settings cover automatic or fixed sources, English/Chinese, system/light/dark appearance, refresh interval, and launch-at-login.
 
 ## Supported sources
 
@@ -37,17 +37,19 @@ The app recognizes the frontmost Codex, Claude Desktop, and Kimi Desktop apps fo
 
 All images below use fixed demonstration data. They contain no real account, task, path, token, or personal usage information.
 
-| Collapsed / idle | 5-hour + weekly |
-| --- | --- |
-| ![Collapsed idle HUD](Screenshots/01-collapsed-idle.png) | ![Codex with 5-hour and weekly windows](Screenshots/02-dual-windows.png) |
+### Collapsed / idle
 
-| Weekly-only fallback | Activity states |
-| --- | --- |
-| ![Codex weekly-only HUD](Screenshots/03-weekly-only.png) | ![Running activity HUD](Screenshots/04-running.png) |
+<p align="center"><img src="Screenshots/01-collapsed-idle.png" width="128" alt="Collapsed idle HUD"></p>
 
-| Completion and attention | Settings |
-| --- | --- |
-| ![Completion and attention HUD](Screenshots/05-attention.png) | ![HUD settings](Screenshots/06-settings.png) |
+### Weekly-only fallback, expanded
+
+<p align="center"><img src="Screenshots/02-weekly-only-expanded.png" width="360" alt="Codex weekly-only expanded HUD"></p>
+
+### Activity states
+
+| Multiple tasks running | Needs confirmation | One task completed |
+| --- | --- | --- |
+| <img src="Screenshots/03-multitask-running.png" width="128" alt="Multiple tasks running"> | <img src="Screenshots/04-needs-confirmation.png" width="128" alt="Task needs confirmation"> | <img src="Screenshots/05-single-task-completed.png" width="128" alt="One task completed"> |
 
 ## Install
 
@@ -109,7 +111,7 @@ ZIP 内只包含 App 和必需的辅助程序，不包含作者账号、本机�
 - 自动跟随当前前台的受支持应用；也可以在设置中固定为 Codex、Claude 或 Kimi。
 - 聚合运行/思考中、完成未读、需要输入和错误等活动状态。即使另一项任务仍在运行，完成提醒也不会被覆盖。
 - 收起态会吸附在你选定的屏幕边缘。展开、收起或调整大小时，HUD 会保持贴边，不会无故漂移。
-- 展开后可查看用量卡片、重置时间、可用时的 Token 历史，以及外观和登录项设置。
+- 展开后可查看用量卡片、重置时间和可用时的 Token 历史。设置中可选自动或固定来源、中文/英文、跟随系统/浅色/深色界面、刷新频率和登录时启动。
 
 ## 支持的来源
 
@@ -125,17 +127,19 @@ ZIP 内只包含 App 和必需的辅助程序，不包含作者账号、本机�
 
 以下全部使用固定演示数据，不包含真实账号、任务、路径、凭据或个人用量。
 
-| 收起 / 空闲 | 5 小时 + 周限额 |
-| --- | --- |
-| ![收起空闲 HUD](Screenshots/01-collapsed-idle.png) | ![5 小时与周限额](Screenshots/02-dual-windows.png) |
+### 收起 / 空闲
 
-| 仅周限额 | 活动状态 |
-| --- | --- |
-| ![仅周限额 HUD](Screenshots/03-weekly-only.png) | ![任务运行 HUD](Screenshots/04-running.png) |
+<p align="center"><img src="Screenshots/01-collapsed-idle.png" width="128" alt="收起空闲 HUD"></p>
 
-| 完成与需注意 | 设置 |
-| --- | --- |
-| ![完成与需注意 HUD](Screenshots/05-attention.png) | ![HUD 设置](Screenshots/06-settings.png) |
+### 仅周限额展开态
+
+<p align="center"><img src="Screenshots/02-weekly-only-expanded.png" width="360" alt="仅周限额展开态 HUD"></p>
+
+### 活动状态
+
+| 多任务运行中 | 待确认 | 单任务已完成 |
+| --- | --- | --- |
+| <img src="Screenshots/03-multitask-running.png" width="128" alt="多任务运行中"> | <img src="Screenshots/04-needs-confirmation.png" width="128" alt="任务待确认"> | <img src="Screenshots/05-single-task-completed.png" width="128" alt="单任务已完成"> |
 
 ## 安装
 

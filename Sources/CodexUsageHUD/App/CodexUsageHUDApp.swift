@@ -15,7 +15,9 @@ struct CodexUsageHUDApp: App {
         AppPreferencesMigration.apply()
 #if DEBUG
         if let scenario = DemoPresentation.scenarioFromEnvironment {
-            UserDefaults.standard.set(scenario == .idle || scenario == .running || scenario == .attention, forKey: DefaultsKey.collapsed)
+            UserDefaults.standard.set(
+                scenario == .idle || scenario == .running || scenario == .needsConfirmation || scenario == .singleTaskCompleted,
+                forKey: DefaultsKey.collapsed)
             UserDefaults.standard.set(AppTheme.dark.rawValue, forKey: DefaultsKey.theme)
             UserDefaults.standard.set(AppLanguage.english.rawValue, forKey: DefaultsKey.language)
             UserDefaults.standard.set(false, forKey: DefaultsKey.launchAtLogin)
