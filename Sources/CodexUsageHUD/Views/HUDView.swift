@@ -67,6 +67,13 @@ struct HUDView: View {
         CollapsedHUDMode(activityState: viewModel.activityState)
     }
 
+    private var activeQuotaDividerPadding: EdgeInsets {
+        guard collapsedMode.isActive, collapsedRowCount > 1 else {
+            return EdgeInsets(top: 7, leading: 0, bottom: 7, trailing: 0)
+        }
+        return EdgeInsets(top: 16, leading: 0, bottom: 28, trailing: 0)
+    }
+
     private var activeQuotaItems: [ActiveQuotaItem] {
         if viewModel.selectedProvider == .claude {
             return [
@@ -278,7 +285,7 @@ struct HUDView: View {
         GeometryReader { proxy in
             VStack(spacing: 0) {
                 collapsedStatusVisual
-                    .frame(height: proxy.size.height * (collapsedRowCount > 1 ? 0.50 : 0.52))
+                    .frame(height: proxy.size.height * (collapsedRowCount > 1 ? 0.46 : 0.52))
                 collapsedActiveQuotaSection
             }
         }
@@ -314,7 +321,7 @@ struct HUDView: View {
                 ForEach(Array(activeQuotaItems.enumerated()), id: \.element.id) { index, item in
                     if index > 0 {
                         RailDivider()
-                            .padding(.vertical, collapsedRowCount > 1 ? 7 : 5)
+                            .padding(activeQuotaDividerPadding)
                     }
                     ActiveQuotaMetric(
                         title: windowTitle(item.kind, compact: true),
@@ -356,27 +363,24 @@ struct HUDView: View {
         VStack(spacing: 8) {
             expandedIdentityHeader
 
-            ScrollView(.vertical) {
-                VStack(spacing: 12) {
-                    if viewModel.selectedProvider == .codex {
-                        codexExpandedContent
-                    } else if viewModel.selectedProvider == .claude {
-                        claudeExpandedContent
-                    } else {
-                        kimiExpandedContent
-                    }
-
-                    if let lastError = viewModel.lastError {
-                        Text(lastError)
-                            .font(.caption)
-                            .foregroundStyle(.red)
-                            .lineLimit(3)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
+            VStack(spacing: 12) {
+                if viewModel.selectedProvider == .codex {
+                    codexExpandedContent
+                } else if viewModel.selectedProvider == .claude {
+                    claudeExpandedContent
+                } else {
+                    kimiExpandedContent
                 }
-                .padding(.bottom, 4)
+
+                if let lastError = viewModel.lastError {
+                    Text(lastError)
+                        .font(.caption)
+                        .foregroundStyle(.red)
+                        .lineLimit(3)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
-            .scrollIndicators(.automatic)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
         .padding(.horizontal, 14)
         .padding(.top, 8)
@@ -431,9 +435,9 @@ struct HUDView: View {
                     WindowRow(title: windowTitle(.fiveHour), window: nil, resetStyle: .timeOnly, language: appLanguage)
                     WindowRow(title: windowTitle(.weekly), window: nil, resetStyle: .dateTime, language: appLanguage)
                 } else if expandedWindows.count == 2 {
-                    HStack(spacing: 8) {
+                    HStack(alignment: .top, spacing: 16) {
                         ForEach(expandedWindows) { item in
-                            CompactQuotaCard(
+                            InlineQuotaRow(
                                 title: windowTitle(item.kind, compact: true),
                                 window: item.window,
                                 resetStyle: resetStyle(item.kind),
@@ -880,8 +884,8 @@ struct CollapsedStatusPresentation: Equatable {
     }
 
     var compactLabel: String {
-        if language == .english, state == .thinking {
-            return "THK"
+        if state == .thinking {
+            return language == .english ? "THK" : "思考"
         }
         return fullLabel
     }
@@ -1728,10 +1732,7 @@ private struct CollapsedStatusVisual: View {
                 .fixedSize(horizontal: true, vertical: false)
                 .background(completionColor, in: Capsule())
         } else if presentation.showsInlineCompletionCount {
-            ViewThatFits(in: .horizontal) {
-                combinedStatus(label: presentation.fullLabel)
-                combinedStatus(label: presentation.compactLabel)
-            }
+            combinedStatus(label: presentation.compactLabel)
             .padding(.horizontal, 6)
             .frame(height: CollapsedStatusPresentation.capsuleHeight)
             .fixedSize(horizontal: true, vertical: false)
@@ -1798,6 +1799,7 @@ private struct ActiveQuotaMetric: View {
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.72)
+                .frame(maxWidth: .infinity, alignment: .center)
 
             Text(valueText)
                 .font(.system(
@@ -1808,8 +1810,10 @@ private struct ActiveQuotaMetric: View {
                 .lineLimit(1)
                 .allowsTightening(true)
                 .minimumScaleFactor(compact ? 0.90 : 0.70)
+                .frame(maxWidth: .infinity, alignment: .center)
         }
         .frame(maxWidth: .infinity)
+        .multilineTextAlignment(.center)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(title), \(valueText)")
     }
@@ -1974,7 +1978,7 @@ private struct WindowRow: View {
     }
 }
 
-private struct CompactQuotaCard: View {
+private struct InlineQuotaRow: View {
     let title: String
     let window: UsageWindow?
     let resetStyle: ResetDisplayStyle
@@ -1982,32 +1986,27 @@ private struct CompactQuotaCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            HStack(alignment: .firstTextBaseline, spacing: 4) {
+            HStack {
                 Text(title)
-                    .font(.system(size: 9, weight: .semibold))
-                    .foregroundStyle(.secondary)
+                    .font(.caption.weight(.semibold))
                     .lineLimit(1)
-                    .minimumScaleFactor(0.82)
-                Spacer(minLength: 2)
+                    .minimumScaleFactor(0.86)
+                Spacer(minLength: 4)
                 Text(valueText)
-                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(.secondary)
                     .monospacedDigit()
                     .lineLimit(1)
-                    .minimumScaleFactor(0.84)
+                    .minimumScaleFactor(0.82)
             }
-            UsageProgressBar(value: window?.remainingPercent, tint: tint, height: 5)
+            UsageProgressBar(value: window?.remainingPercent, tint: tint, height: 6)
             Text("\(L10n.text(.quotaRestores, language: language)) \(resetStyle.text(for: window?.resetsAt))")
-                .font(.system(size: 8, weight: .medium))
+                .font(.caption2)
                 .foregroundStyle(.tertiary)
                 .lineLimit(1)
-                .minimumScaleFactor(0.76)
+                .minimumScaleFactor(0.82)
         }
-        .padding(.horizontal, 8)
-        .padding(.vertical, 7)
-        .frame(maxWidth: .infinity, minHeight: 64, alignment: .topLeading)
-        .background(
-            .secondary.opacity(0.055),
-            in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .frame(maxWidth: .infinity, alignment: .topLeading)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(title), \(valueText)")
     }

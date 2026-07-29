@@ -356,6 +356,12 @@ struct AgentActivityTests {
         #expect(thinking.showsInlineCompletionCount)
         #expect(thinking.completionCountText == "3")
 
+        let chineseThinking = CollapsedStatusPresentation(
+            state: .thinking,
+            unreadCompletionCount: 1,
+            language: .chinese)
+        #expect(chineseThinking.compactLabel == "思考")
+
         let input = CollapsedStatusPresentation(
             state: .attention,
             unreadCompletionCount: 1,

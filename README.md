@@ -53,7 +53,7 @@ All images below use fixed demonstration data. They contain no real account, tas
 
 ## Install
 
-1. Download `CodexUsageHUD-v1.8.1-macos-arm64.zip` from the release page.
+1. Download `CodexUsageHUD-v1.8.2-macos-arm64.zip` from the release page.
 2. Unzip it and move **Codex Usage HUD.app** to Applications if you want.
 3. Right-click the app and choose **Open**. If Gatekeeper blocks it, open **System Settings → Privacy & Security** and choose **Open Anyway**.
 4. Start the apps you use, then open the HUD. In Settings, leave source selection on **Automatic** or choose a fixed provider.
@@ -143,7 +143,7 @@ ZIP 内只包含 App 和必需的辅助程序，不包含作者账号、本机�
 
 ## 安装
 
-1. 在 Release 页面下载 `CodexUsageHUD-v1.8.1-macos-arm64.zip`。
+1. 在 Release 页面下载 `CodexUsageHUD-v1.8.2-macos-arm64.zip`。
 2. 解压后，把 **Codex Usage HUD.app** 移到“应用程序”文件夹（可选）。
 3. 右键点按 App 并选择“打开”。如果 Gatekeeper 拦截，请到“系统设置 → 隐私与安全性”选择“仍要打开”。
 4. 启动你使用的工具后打开 HUD；在设置中保持“自动”，或选择固定来源。

@@ -9,6 +9,7 @@ struct DemoPresentation {
         case dualWindows
         case weeklyOnly
         case running
+        case runningWithCompletion
         case needsConfirmation
         case singleTaskCompleted
         case settings
@@ -75,6 +76,12 @@ struct DemoPresentation {
             values = [
                 .codex: ProviderActivitySummary(provider: .codex, thinkingCount: 2, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0),
                 .claude: ProviderActivitySummary(provider: .claude, thinkingCount: 1, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0),
+                .kimi: ProviderActivitySummary(provider: .kimi, thinkingCount: 0, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0)
+            ]
+        case .runningWithCompletion:
+            values = [
+                .codex: ProviderActivitySummary(provider: .codex, thinkingCount: 1, attentionCount: 0, errorCount: 0, unreadCompletionCount: 1),
+                .claude: ProviderActivitySummary(provider: .claude, thinkingCount: 0, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0),
                 .kimi: ProviderActivitySummary(provider: .kimi, thinkingCount: 0, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0)
             ]
         case .needsConfirmation:
