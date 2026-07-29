@@ -8,6 +8,7 @@ struct DemoPresentation {
         case idle
         case dualWindows
         case weeklyOnly
+        case weeklyOnlyCollapsed
         case running
         case runningWithCompletion
         case needsConfirmation
@@ -29,7 +30,7 @@ struct DemoPresentation {
     var snapshot: UsageSnapshot {
         let windows: (RateLimitWindow?, RateLimitWindow?)
         switch scenario {
-        case .weeklyOnly:
+        case .weeklyOnly, .weeklyOnlyCollapsed:
             windows = (RateLimitWindow(usedPercent: 42, windowDurationMins: 10_080, resetsAt: Int64(now.addingTimeInterval(4 * 86_400).timeIntervalSince1970)), nil)
         default:
             windows = (
@@ -80,7 +81,7 @@ struct DemoPresentation {
             ]
         case .runningWithCompletion:
             values = [
-                .codex: ProviderActivitySummary(provider: .codex, thinkingCount: 1, attentionCount: 0, errorCount: 0, unreadCompletionCount: 1),
+                .codex: ProviderActivitySummary(provider: .codex, thinkingCount: 1, attentionCount: 0, errorCount: 0, unreadCompletionCount: 2),
                 .claude: ProviderActivitySummary(provider: .claude, thinkingCount: 0, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0),
                 .kimi: ProviderActivitySummary(provider: .kimi, thinkingCount: 0, attentionCount: 0, errorCount: 0, unreadCompletionCount: 0)
             ]

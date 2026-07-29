@@ -16,7 +16,7 @@ struct CodexUsageHUDApp: App {
 #if DEBUG
         if let scenario = DemoPresentation.scenarioFromEnvironment {
             UserDefaults.standard.set(
-                scenario == .idle || scenario == .running || scenario == .runningWithCompletion || scenario == .needsConfirmation || scenario == .singleTaskCompleted,
+                scenario == .idle || scenario == .weeklyOnlyCollapsed || scenario == .running || scenario == .runningWithCompletion || scenario == .needsConfirmation || scenario == .singleTaskCompleted,
                 forKey: DefaultsKey.collapsed)
             UserDefaults.standard.set(AppTheme.dark.rawValue, forKey: DefaultsKey.theme)
             UserDefaults.standard.set(AppLanguage.english.rawValue, forKey: DefaultsKey.language)

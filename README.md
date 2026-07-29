@@ -37,19 +37,23 @@ The app recognizes the frontmost Codex, Claude Desktop, and Kimi Desktop apps fo
 
 All images below use fixed demonstration data. They contain no real account, task, path, token, or personal usage information.
 
-### Collapsed / idle
+### Default, collapsed
 
-<p align="center"><img src="Screenshots/01-collapsed-idle.png" width="128" alt="Collapsed idle HUD"></p>
+| 5-hour + weekly | Weekly-only |
+| :---: | :---: |
+| <img src="Screenshots/01-dual-default.png" width="128" alt="Collapsed HUD with 5-hour and weekly windows"> | <img src="Screenshots/02-weekly-only-default.png" width="128" alt="Collapsed weekly-only HUD"> |
 
-### Weekly-only fallback, expanded
+### Expanded
 
-<p align="center"><img src="Screenshots/02-weekly-only-expanded.png" width="360" alt="Codex weekly-only expanded HUD"></p>
+| 5-hour + weekly | Weekly-only |
+| :---: | :---: |
+| <img src="Screenshots/03-dual-expanded.png" width="360" alt="Expanded HUD with 5-hour and weekly windows"> | <img src="Screenshots/04-weekly-only-expanded.png" width="360" alt="Expanded weekly-only HUD"> |
 
 ### Activity states
 
-| Multiple tasks running | Needs confirmation | One task completed |
-| --- | --- | --- |
-| <img src="Screenshots/03-multitask-running.png" width="128" alt="Multiple tasks running"> | <img src="Screenshots/04-needs-confirmation.png" width="128" alt="Task needs confirmation"> | <img src="Screenshots/05-single-task-completed.png" width="128" alt="One task completed"> |
+| Multiple tasks running | Needs confirmation | One task completed | Running + multiple completed |
+| :---: | :---: | :---: | :---: |
+| <img src="Screenshots/05-multitask-running.png" width="128" alt="Multiple tasks running"> | <img src="Screenshots/06-needs-confirmation.png" width="128" alt="Task needs confirmation"> | <img src="Screenshots/07-single-task-completed.png" width="128" alt="One task completed"> | <img src="Screenshots/08-running-with-completions.png" width="128" alt="A running task with multiple completed tasks"> |
 
 ## Install
 
@@ -127,19 +131,23 @@ ZIP 内只包含 App 和必需的辅助程序，不包含作者账号、本机�
 
 以下全部使用固定演示数据，不包含真实账号、任务、路径、凭据或个人用量。
 
-### 收起 / 空闲
+### 默认收起态
 
-<p align="center"><img src="Screenshots/01-collapsed-idle.png" width="128" alt="收起空闲 HUD"></p>
+| 5 小时 + 周限额 | 仅周限额 |
+| :---: | :---: |
+| <img src="Screenshots/01-dual-default.png" width="128" alt="5 小时与周限额收起态 HUD"> | <img src="Screenshots/02-weekly-only-default.png" width="128" alt="仅周限额收起态 HUD"> |
 
-### 仅周限额展开态
+### 展开态
 
-<p align="center"><img src="Screenshots/02-weekly-only-expanded.png" width="360" alt="仅周限额展开态 HUD"></p>
+| 5 小时 + 周限额 | 仅周限额 |
+| :---: | :---: |
+| <img src="Screenshots/03-dual-expanded.png" width="360" alt="5 小时与周限额展开态 HUD"> | <img src="Screenshots/04-weekly-only-expanded.png" width="360" alt="仅周限额展开态 HUD"> |
 
 ### 活动状态
 
-| 多任务运行中 | 待确认 | 单任务已完成 |
-| --- | --- | --- |
-| <img src="Screenshots/03-multitask-running.png" width="128" alt="多任务运行中"> | <img src="Screenshots/04-needs-confirmation.png" width="128" alt="任务待确认"> | <img src="Screenshots/05-single-task-completed.png" width="128" alt="单任务已完成"> |
+| 多任务运行中 | 待确认 | 单任务已完成 | 运行中 + 多任务已完成 |
+| :---: | :---: | :---: | :---: |
+| <img src="Screenshots/05-multitask-running.png" width="128" alt="多任务运行中"> | <img src="Screenshots/06-needs-confirmation.png" width="128" alt="任务待确认"> | <img src="Screenshots/07-single-task-completed.png" width="128" alt="单任务已完成"> | <img src="Screenshots/08-running-with-completions.png" width="128" alt="运行中且多个任务已完成"> |
 
 ## 安装
 
