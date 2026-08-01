@@ -59,6 +59,22 @@ AI coding tools expose usage windows in different places. This app keeps the inf
 - Keeps the collapsed rail attached to the selected screen edge while expanding, collapsing, or resizing.
 - Offers an expanded view with usage cards, reset information, token history where available, appearance controls, refresh interval, and launch-at-login.
 
+## See it in motion
+
+These short demos use fixed, privacy-safe data. They show the HUD moving through idle, running, error, completed, parallel-task, and running-plus-completion states.
+
+| Weekly-only quota | Five-hour + weekly quota |
+| :---: | :---: |
+| <img src="Screenshots/animations/weekly-only.gif" width="440" alt="Animated weekly-only Codex Usage HUD states"> | <img src="Screenshots/animations/five-hour-plus-weekly.gif" width="440" alt="Animated five-hour and weekly Codex Usage HUD states"> |
+
+### Provider views
+
+The same HUD can follow Codex, Claude Code, or Kimi. These provider examples also use fixed demonstration data.
+
+| Codex | Claude Code | Kimi |
+| :---: | :---: | :---: |
+| <img src="Screenshots/providers/codex.png" width="250" alt="Codex Usage HUD expanded view"> | <img src="Screenshots/providers/claude-code.png" width="250" alt="Claude Code Usage HUD expanded view"> | <img src="Screenshots/providers/kimi.png" width="250" alt="Kimi Usage HUD expanded view"> |
+
 ## Supported providers
 
 | Provider | What the HUD can show | Local connection |
@@ -168,6 +184,22 @@ Codex Usage HUD 是一个原生 macOS AI 编程用量监控工具。它把 Codex
 ## 截图
 
 以下截图全部使用固定演示数据，不包含真实账号、任务、路径、凭据或个人用量。
+
+### 动态状态演示
+
+以下两个 GIF 使用固定且脱敏的演示数据，依次展示空闲、运行、错误、完成、多任务运行，以及“仍有任务运行但保留完成提醒”等状态。
+
+| 仅周限额 | 五小时 + 周限额 |
+| :---: | :---: |
+| <img src="Screenshots/animations/weekly-only.gif" width="440" alt="仅周限额 HUD 状态动态演示"> | <img src="Screenshots/animations/five-hour-plus-weekly.gif" width="440" alt="五小时和周限额 HUD 状态动态演示"> |
+
+### 不同来源示例
+
+HUD 可以跟随 Codex、Claude Code 或 Kimi。以下来源示例同样只使用固定演示数据。
+
+| Codex | Claude Code | Kimi |
+| :---: | :---: | :---: |
+| <img src="Screenshots/providers/codex.png" width="250" alt="Codex Usage HUD 展开态"> | <img src="Screenshots/providers/claude-code.png" width="250" alt="Claude Code Usage HUD 展开态"> | <img src="Screenshots/providers/kimi.png" width="250" alt="Kimi Usage HUD 展开态"> |
 
 ### 默认收起态
 
