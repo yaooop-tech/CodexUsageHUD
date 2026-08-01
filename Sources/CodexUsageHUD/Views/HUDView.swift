@@ -720,13 +720,13 @@ struct HUDView: View {
         hoverCollapseTask?.cancel()
         hoverCollapseTask = nil
 
-        guard !isInside, !isCollapsed, !viewModel.activitySummary.hasActivity else {
+        guard !isInside, !isCollapsed else {
             return
         }
 
         hoverCollapseTask = Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(900))
-            guard !Task.isCancelled, !isCollapsed, !viewModel.activitySummary.hasActivity else {
+            guard !Task.isCancelled, !isCollapsed else {
                 return
             }
             isCollapsed = true

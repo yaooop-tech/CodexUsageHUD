@@ -60,9 +60,9 @@ build_bundle() {
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>CFBundleShortVersionString</key>
-  <string>1.8.3</string>
+  <string>1.8.4</string>
   <key>CFBundleVersion</key>
-  <string>11</string>
+  <string>12</string>
   <key>LSMinimumSystemVersion</key>
   <string>$MIN_SYSTEM_VERSION</string>
   <key>LSUIElement</key>
@@ -128,14 +128,15 @@ case "$MODE" in
     fi
     mkdir -p "$PACKAGE_DIR"
     PACKAGE_DIR="$(cd "$PACKAGE_DIR" && pwd)"
-    ARCHIVE="$PACKAGE_DIR/CodexUsageHUD-v1.8.3-macos-arm64.zip"
-    rm -f "$ARCHIVE"
+    ARCHIVE="$PACKAGE_DIR/CodexUsageHUD-v1.8.4-macos-arm64.zip"
+    CHECKSUM_FILE="$ARCHIVE.sha256"
+    rm -f "$ARCHIVE" "$CHECKSUM_FILE"
     /usr/bin/xattr -cr "$APP_BUNDLE" 2>/dev/null || true
     (
       cd "$DIST_DIR"
       /usr/bin/zip -q -r -X "$ARCHIVE" "$DISPLAY_NAME.app"
     )
-    /usr/bin/shasum -a 256 "$ARCHIVE"
+    /usr/bin/shasum -a 256 "$ARCHIVE" | /usr/bin/tee "$CHECKSUM_FILE"
     ;;
   --install|install)
     rm -rf "/Applications/$DISPLAY_NAME.app"
