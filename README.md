@@ -87,9 +87,9 @@ All screenshots use fixed demonstration data. They contain no real account, task
 
 ### Activity states
 
-| Multiple tasks running | Needs confirmation | One task completed | Running + multiple completed | Five-hour + weekly error |
+| Multiple tasks running | Needs confirmation | One task completed | Running + multiple completed | Error |
 | :---: | :---: | :---: | :---: | :---: |
-| <img src="Screenshots/05-multitask-running.png" width="128" alt="Multiple tasks running"> | <img src="Screenshots/06-needs-confirmation.png" width="128" alt="Task needs confirmation"> | <img src="Screenshots/07-single-task-completed.png" width="128" alt="One task completed"> | <img src="Screenshots/08-running-with-completions.png" width="128" alt="A running task with multiple completed tasks"> | <img src="Screenshots/09-five-hour-weekly-error.png" width="128" alt="Five-hour and weekly quota error state"> |
+| <img src="Screenshots/05-multitask-running.png" width="136" height="760" alt="Multiple tasks running"> | <img src="Screenshots/06-needs-confirmation.png" width="136" height="760" alt="Task needs confirmation"> | <img src="Screenshots/07-single-task-completed.png" width="136" height="760" alt="One task completed"> | <img src="Screenshots/08-running-with-completions.png" width="136" height="760" alt="A running task with multiple completed tasks"> | <img src="Screenshots/09-five-hour-weekly-error.png" width="136" height="760" alt="Error"> |
 
 ## Install
 
@@ -183,9 +183,9 @@ Codex Usage HUD 是一个原生 macOS AI 编程用量监控工具。它把 Codex
 
 ### 活动状态
 
-| 多任务运行中 | 待确认 | 单任务已完成 | 运行中 + 多任务已完成 | 五小时 + 周限额错误 |
+| 多任务运行中 | 待确认 | 单任务已完成 | 运行中 + 多任务已完成 | 错误 |
 | :---: | :---: | :---: | :---: | :---: |
-| <img src="Screenshots/05-multitask-running.png" width="128" alt="多任务运行中"> | <img src="Screenshots/06-needs-confirmation.png" width="128" alt="任务待确认"> | <img src="Screenshots/07-single-task-completed.png" width="128" alt="单任务已完成"> | <img src="Screenshots/08-running-with-completions.png" width="128" alt="运行中且多个任务已完成"> | <img src="Screenshots/09-five-hour-weekly-error.png" width="128" alt="五小时与周限额错误状态"> |
+| <img src="Screenshots/05-multitask-running.png" width="136" height="760" alt="多任务运行中"> | <img src="Screenshots/06-needs-confirmation.png" width="136" height="760" alt="任务待确认"> | <img src="Screenshots/07-single-task-completed.png" width="136" height="760" alt="单任务已完成"> | <img src="Screenshots/08-running-with-completions.png" width="136" height="760" alt="运行中且多个任务已完成"> | <img src="Screenshots/09-five-hour-weekly-error.png" width="136" height="760" alt="错误"> |
 
 ## 安装
 
