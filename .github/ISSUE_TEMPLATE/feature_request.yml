@@ -1,0 +1,26 @@
+name: Feature request
+description: Suggest a focused improvement for Codex Usage HUD.
+title: "[Feature] "
+body:
+  - type: textarea
+    attributes:
+      label: What problem would this solve?
+      description: Describe the workflow or limitation in plain language.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What would you like to happen?
+      description: Describe the smallest useful version of the idea.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Alternatives considered
+      description: Tell us what you tried or what other behavior might work.
+  - type: checkboxes
+    attributes:
+      label: Privacy check
+      options:
+        - label: I have removed tokens, cookies, credentials, prompts, private logs, and personal screenshots.
+          required: true
