@@ -130,13 +130,17 @@ case "$MODE" in
     PACKAGE_DIR="$(cd "$PACKAGE_DIR" && pwd)"
     ARCHIVE="$PACKAGE_DIR/CodexUsageHUD-v1.8.4-macos-arm64.zip"
     CHECKSUM_FILE="$ARCHIVE.sha256"
+    ARCHIVE_NAME="$(basename "$ARCHIVE")"
     rm -f "$ARCHIVE" "$CHECKSUM_FILE"
     /usr/bin/xattr -cr "$APP_BUNDLE" 2>/dev/null || true
     (
       cd "$DIST_DIR"
       /usr/bin/zip -q -r -X "$ARCHIVE" "$DISPLAY_NAME.app"
     )
-    /usr/bin/shasum -a 256 "$ARCHIVE" | /usr/bin/tee "$CHECKSUM_FILE"
+    (
+      cd "$PACKAGE_DIR"
+      /usr/bin/shasum -a 256 "$ARCHIVE_NAME" | /usr/bin/tee "$(basename "$CHECKSUM_FILE")"
+    )
     ;;
   --install|install)
     rm -rf "/Applications/$DISPLAY_NAME.app"
